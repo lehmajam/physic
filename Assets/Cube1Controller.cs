@@ -20,29 +20,32 @@ public class CubeController : MonoBehaviour
     public float springConstant; // kg
     public float springLength; // m
     public float windForce; // N
-    private float u1; // m/s
-    private float u2; // m/s
-    private float v1; // m/s
-    private float v2; // m/s
+    private float springActive;
     private float currentTimeStep; // s
     private List<List<float>> timeSeries;
+    public TextMesh velocityText;
+    public TextMesh timeText;
 
     // Start is called before the first frame update
     void Start()
     {
         cube1 = GetComponent<Rigidbody>();
         timeSeries = new List<List<float>>();
+        velocityText = GetComponentInChildren<TextMesh>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        velocityText.text = "xVelocity1: " + cube1.velocity.x.ToString("F2");
+        timeText.text = "t: " + currentTimeStep.ToString("F2");
     }
 
     // FixedUpdate can be called multiple times per frame
     void FixedUpdate() {
+        springActive = 0;
         if (cube1.position.x > cube2.position.x - springLength) {
+            springActive = 1;
             windForce = 0f;
             float springForceCube1 = -springConstant * (cube1.position.x - cube2.position.x + springLength);
             float springForceCube2 = springConstant * (cube1.position.x - cube2.position.x + springLength);
@@ -50,9 +53,8 @@ public class CubeController : MonoBehaviour
             cube2.AddForce(new Vector3(springForceCube2, 0f, 0f));
         }
         cube1.AddForce(new Vector3(windForce, 0f, 0f));
-
         currentTimeStep += Time.deltaTime;
-        timeSeries.Add(new List<float>() {currentTimeStep, cube1.position.x, cube1.velocity.x, windForce, cube2.position.x, cube2.velocity.x});
+        timeSeries.Add(new List<float>() {currentTimeStep, cube1.position.x, cube1.velocity.x, windForce, cube2.position.x, cube2.velocity.x, springActive});
     }
 
     void OnApplicationQuit() {
