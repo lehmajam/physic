@@ -20,6 +20,8 @@ public class CubeController : MonoBehaviour
     public float springConstant; // kg
     public float springLength; // m
     public float windForce; // N
+    private float springForceCube1; // N
+    private float springForceCube2; // N
     private float springActive;
     private float currentTimeStep; // s
     private List<List<float>> timeSeries;
@@ -32,6 +34,8 @@ public class CubeController : MonoBehaviour
         cube1 = GetComponent<Rigidbody>();
         timeSeries = new List<List<float>>();
         velocityText = GetComponentInChildren<TextMesh>();
+        springForceCube1 = 0f;
+        springForceCube2 = 0f;
     }
 
     // Update is called once per frame
@@ -47,23 +51,23 @@ public class CubeController : MonoBehaviour
         if (cube1.position.x > cube2.position.x - springLength) {
             springActive = 1;
             windForce = 0f;
-            float springForceCube1 = -springConstant * (cube1.position.x - cube2.position.x + springLength);
-            float springForceCube2 = springConstant * (cube1.position.x - cube2.position.x + springLength);
+            springForceCube1 = -springConstant * (cube1.position.x - cube2.position.x + springLength);
+            springForceCube2 = springConstant * (cube1.position.x - cube2.position.x + springLength);
             cube1.AddForce(new Vector3(springForceCube1, 0f, 0f));
             cube2.AddForce(new Vector3(springForceCube2, 0f, 0f));
         }
         cube1.AddForce(new Vector3(windForce, 0f, 0f));
         currentTimeStep += Time.deltaTime;
-        timeSeries.Add(new List<float>() {currentTimeStep, cube1.position.x, cube1.velocity.x, windForce, cube2.position.x, cube2.velocity.x, springActive});
+        timeSeries.Add(new List<float>() {currentTimeStep, cube1.position.x, cube1.velocity.x, springForceCube1, cube2.position.x, cube2.velocity.x, springForceCube2, springActive});
     }
-
+    
     void OnApplicationQuit() {
         WriteTimeSeriesToCSV();
     }
 
     void WriteTimeSeriesToCSV() {
         using (var streamWriter = new StreamWriter("time_series.csv")) {
-            streamWriter.WriteLine("t,cube1PositionX(t),cube1Velocity(t),windF(t) (added),cube2PositionX(t),cube2Velocity(t)");
+            streamWriter.WriteLine("t,cube1PositionX(t),cube1Velocity(t),springForceCube1,cube2PositionX(t),cube2Velocity(t),springForceCube2,springActive");
             
             foreach (List<float> timeStep in timeSeries) {
                 streamWriter.WriteLine(string.Join(",", timeStep));
