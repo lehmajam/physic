@@ -25,4 +25,5 @@ public class Cube2Controller : MonoBehaviour
     void FixedUpdate() {
         
     }
+
 }
