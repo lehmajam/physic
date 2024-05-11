@@ -41,7 +41,7 @@ public class CubeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        velocityText.text = "xVelocity1: " + cube1.velocity.x.ToString("F2");
+        velocityText.text = "xVelocityCube1: " + cube1.velocity.x.ToString("F2");
         timeText.text = "t: " + currentTimeStep.ToString("F2");
     }
 
