@@ -200,7 +200,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 703e04123dc604a0f8f82cfbb2d302ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -396,12 +396,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434520991}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 5}
+  m_LocalRotation: {x: -0.2588191, y: -0, z: -0, w: 0.9659258}
+  m_LocalPosition: {x: -5, y: 4.5, z: 14.49038}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 963194228}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &567155973
 GameObject:
@@ -416,7 +416,6 @@ GameObject:
   - component: {fileID: 567155976}
   - component: {fileID: 567155975}
   - component: {fileID: 567155974}
-  - component: {fileID: 567155979}
   m_Layer: 0
   m_Name: Cube2
   m_TagString: Untagged
@@ -534,24 +533,9 @@ Transform:
   m_LocalPosition: {x: 5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1708068507}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &567155979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 567155973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b621fca8e572bd42a5b95ac8902f573, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cube1: {fileID: 1377017608}
-  velocityText: {fileID: 1708068505}
 --- !u!1 &587547560
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +613,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 703e04123dc604a0f8f82cfbb2d302ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -885,7 +869,9 @@ Transform:
   m_LocalPosition: {x: 5, y: 5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1708068507}
+  - {fileID: 434520994}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!114 &963194229
@@ -900,7 +886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934c54631bb9be14f8793c839aa01cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cube2: {fileID: 567155974}
+  cube2: {fileID: 567155974}
   offset: {x: 0, y: 5, z: -10}
 --- !u!1 &974936908
 GameObject:
@@ -1025,7 +1011,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101248651}
-  m_Text: 'Physics Lab: Colliding Cubes'
+  m_Text: 'Physics Lab: L-shape rotation'
   m_OffsetZ: 0
   m_CharacterSize: 0.1
   m_LineSpacing: 1
@@ -1327,7 +1313,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 703e04123dc604a0f8f82cfbb2d302ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1396,6 +1382,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9bea7ae2e071784a80b638dfbb9ef13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cube2: {fileID: 567155974}
+  velocity2Text: {fileID: 1708068505}
+  lShape2: {fileID: 587547566}
+  lShape3: {fileID: 286455215}
 --- !u!138 &1602166646
 FixedJoint:
   m_ObjectHideFlags: 0
@@ -1607,12 +1597,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708068504}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 4}
+  m_LocalRotation: {x: -0.2588191, y: -0, z: -0, w: 0.9659258}
+  m_LocalPosition: {x: 2, y: 3.102888, z: 14.374355}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 567155978}
+  m_Father: {fileID: 963194228}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!850595691 &2068849080
 LightingSettings:
@@ -1688,5 +1678,4 @@ SceneRoots:
   - {fileID: 1377017607}
   - {fileID: 567155978}
   - {fileID: 1101248654}
-  - {fileID: 434520994}
   - {fileID: 364714843}
